@@ -16,9 +16,9 @@ class BorrowFactory extends Factory
         return [
             'reader_id' => Reader::inRandomOrder()->first()->id,
             'book_id' => Book::inRandomOrder()->first()->id,
-            'borrow_date' => $this->faker->date(),
-            'return_date' => $this->faker->date(),
-            'status' => $this->faker->boolean(),
+            'borrow_date' => fake()->date(),
+            'return_date' => fake()->date(),
+            'status' =>fake()->boolean(),
         ];
     }
 }

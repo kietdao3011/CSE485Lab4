@@ -17,7 +17,7 @@ class ReaderFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=>fake()->sentence(),
+            'name'=>fake()->name(),
             'birthday'=>fake()->date(),
             'address'=>fake()->streetAddress(),
             'phone'=>fake()->phoneNumber()
