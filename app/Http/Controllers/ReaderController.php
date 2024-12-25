@@ -16,7 +16,7 @@ class ReaderController extends Controller
     public function index()
     {
         // Lấy danh sách readers và phân trang
-        $readers = Reader::orderBy('id', 'desc')->paginate(10);
+        $readers = Reader::orderBy('updated<i class="bi bi-brush"></i>_at', 'desc')->paginate(10);
         return view("readers.index", compact('readers'));
     }
 

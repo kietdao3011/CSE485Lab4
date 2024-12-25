@@ -34,15 +34,17 @@
                         <td style="position: sticky">{{ $reader->phone }}</td>
                         <td>
                             <div class="d-flex justify-content-around ">
-                                <a href="{{ route('readers.show', $reader->id) }}" class="btn btn-info btn-lg">Xem chi tiết</a>
-                                <a href="{{ route('readers.edit', $reader->id) }}" class="btn btn-warning btn-lg">Sửa</a>
+                                <a href="{{ route('readers.show', $reader->id) }}" class="btn btn-info btn-lg"><i class="bi bi-eye-fill m-1"></i>Xem chi tiết</a>
+                                <a href="{{ route('readers.edit', $reader->id) }}" class="btn btn-warning btn-lg"><i class="bi bi-brush m1"></i>Sửa</a>
                                     <a href=""
                                        data-bs-toggle="modal"
                                        data-bs-target="#deleteModal"
                                        data-id="{{ $reader->id }}"
                                        data-name="{{ $reader->name }}"
                                        class="btn btn-danger btn-lg"
-                                    > Xóa
+                                    >
+                                        <i class="bi bi-file-excel m-1"></i>
+                                        Xóa
                                     </a>
                                 <div class="modal fade " id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
