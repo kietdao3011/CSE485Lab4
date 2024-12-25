@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
+use App\Models\Reader;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -11,7 +13,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $book = Book::all();
+        return view('book.index', compact('book'));
     }
 
     /**
@@ -57,8 +60,10 @@ class BookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $reader= Reader::findOrFail($id);
+        $reader->delete();
+        return redirect()->route('readers.index')->with('success','Deleted Successfully');
     }
 }

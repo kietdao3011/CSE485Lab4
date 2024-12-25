@@ -21,8 +21,8 @@ return new class extends Migration
 
          $table->timestamps();
          //đây là điểm khác biệt so với BTTH03 mà SV cần lưu ý
-         $table->foreign('reader_id')->references('id')->on('readers');
-         $table->foreign('book_id')->references('id')->on('books');
+         $table->foreign('reader_id')->references('id')->on('readers')->onDelete('cascade');
+         $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
          });
     }
 

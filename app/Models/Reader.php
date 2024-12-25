@@ -9,6 +9,12 @@ class Reader extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',      // Tên độc giả
+        'birthday',     // Email
+        'address',   // Địa chỉ
+        'phone',     // Số điện thoại
+    ];
     public function book(){
         return  $this->belongsTo(Book::class);
     }
