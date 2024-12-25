@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -11,7 +12,10 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $i = 1;
+        $page = Book::orderBy('updated_at','desc')->paginate(10);
+        $books = Book::orderBy('updated_at', 'desc')->paginate(10);
+        return view("books.index", compact(['books', 'i', 'page']));
     }
 
     /**
@@ -19,7 +23,7 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        return view('books.add');
     }
 
     /**
@@ -27,7 +31,18 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required'
+
+        ]);
+        $bookData = $request->all();
+        Book::create($bookData);
+
+        return redirect()->route('books.index')->with('success', 'Task created successfully.');
     }
 
     /**
@@ -35,7 +50,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('books.show', compact(['book']));
     }
 
     /**
@@ -43,15 +59,28 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        return view('books.edit', compact(['book']));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required'
+
+        ]);  
+        $bookData = $request->all();
+        $book = Book::findOrFail($id);
+        $book->update($bookData);
+
+        return redirect()->route('books.index')->with('success', 'Task updated successfully!');
     }
 
     /**
@@ -59,6 +88,8 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $book = Book::findOrFail($id);
+        $book->delete();
+        return redirect()->route('books.index')->with('success','Deleted Successfully');
     }
 }

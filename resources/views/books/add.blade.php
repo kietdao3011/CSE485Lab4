@@ -1,12 +1,10 @@
-
 @extends('layout.example')
-@section('title', 'Edit Title')
+@section('title', 'Add Book')
 @section('content')
 <div class="container">
-    <h1>Edit Task</h1>
-    <form action="{{ route('books.update', $book->id) }}" method="POST">
+    <h1>Add Book</h1>
+    <form action="{{ route('books.store') }}" method="POST">
         @csrf
-        @method('PUT')
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" required>
@@ -27,7 +25,7 @@
             <label for="quantity">Quantity:</label>
             <textarea class="form-control" required id="quantity" name="quantity"></textarea>
         </div>
-        <button type="submit" class="btn btn-danger">Update</button>
+        <button type="submit" class="btn btn-danger">Add</button>
     </form>
 </div>
 
